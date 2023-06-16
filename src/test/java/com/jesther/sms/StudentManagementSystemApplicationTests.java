@@ -1,4 +1,4 @@
-package com.jesther.ssms;
+package com.jesther.sms;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
