@@ -49,8 +49,8 @@
                 <td th:text="${student.lastName}"></td>
                 <td th:text="${student.email}"></td>
                 <td>
-                    <a href="@{/students/{studentId}/delete(studentId=${student.id}})}" class="btn btn-danger">Delete</a>
-                    <a href="@{/students/{studentId}/edit(studentId=${student.id}})}" class="btn btn-success">Update</a>
+                    <a th:href="@{/students/{studentId}/edit(studentId=${student.id})}" class="btn btn-danger">Delete</a>
+                    <a th:href="@{/students/{studentId}/edit(studentId=${student.id})}" class="btn btn-success">Update</a>
                 </td>
             </tr>
         </tbody>

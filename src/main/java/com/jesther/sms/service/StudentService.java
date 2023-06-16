@@ -12,4 +12,6 @@ public interface StudentService {
     void createStudent(StudentDto student);
 
     StudentDto getStudentById(Long id);
+
+    void updateStudent(StudentDto studentDto);
 }

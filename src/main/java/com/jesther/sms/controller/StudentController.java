@@ -54,11 +54,29 @@ public class StudentController {
 
     // handler method to handle edit student request
 
-    @GetMapping("{studentId}/edit")
+    @GetMapping("/{studentId}/edit")
     public String editStudent(@PathVariable("studentId") Long id, Model model) {
         StudentDto student = studentService.getStudentById(id);
         model.addAttribute("student", student);
 
         return "edit_student";
+    }
+
+    // handler method to handle edit student form request
+
+    @PostMapping("{studentId}")
+    public String updateStudent(@PathVariable Long studentId,
+                                @ModelAttribute("student") StudentDto studentDto,
+                                BindingResult result,
+                                Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("student", studentDto);
+            return "edit_student";
+        }
+
+        studentDto.setId(studentId);
+        studentService.updateStudent(studentDto);
+
+        return "redirect:/students";
     }
 }
