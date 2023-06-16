@@ -9,7 +9,7 @@ public class StudentMapper {
                 student.getId(),
                 student.getFirstName(),
                 student.getLastName(),
-                student.getEmail(),
+                student.getEmail()
         );
 
         return studentDto;
