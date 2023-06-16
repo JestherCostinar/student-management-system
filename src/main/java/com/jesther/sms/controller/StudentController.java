@@ -2,10 +2,11 @@ package com.jesther.sms.controller;
 
 import com.jesther.sms.dto.StudentDto;
 import com.jesther.sms.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,12 +30,35 @@ public class StudentController {
     }
 
     // handler method to handle new student request
-    @GetMapping("student/new")
+    @GetMapping("/new")
     public String createStudent(Model model) {
         // student model object to store student form data
         StudentDto studentDto = new StudentDto();
         model.addAttribute("student", studentDto);
 
         return "create_student";
+    }
+
+    // handler method to handle save student form submit request
+    @PostMapping
+    public String saveStudent(@Valid @ModelAttribute("student") StudentDto student, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("student", student);
+            return "create_student";
+        }
+
+        studentService.createStudent(student);
+
+        return "redirect:/students";
+    }
+
+    // handler method to handle edit student request
+
+    @GetMapping("{studentId}/edit")
+    public String editStudent(@PathVariable("studentId") Long id, Model model) {
+        StudentDto student = studentService.getStudentById(id);
+        model.addAttribute("student", student);
+
+        return "edit_student";
     }
 }

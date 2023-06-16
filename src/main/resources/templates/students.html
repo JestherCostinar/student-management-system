@@ -13,7 +13,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Student Management System</a>
+        <a class="navbar-brand" th:href="@{/students}">Student Management System</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,6 +26,7 @@
         </div>
     </div>
 </nav>
+
 </br></br></br>
 
 <div class="container">
@@ -47,7 +48,10 @@
                 <td th:text="${student.firstName}"></td>
                 <td th:text="${student.lastName}"></td>
                 <td th:text="${student.email}"></td>
-                <td></td>
+                <td>
+                    <a href="@{/students/{studentId}/delete(studentId=${student.id}})}" class="btn btn-danger">Delete</a>
+                    <a href="@{/students/{studentId}/edit(studentId=${student.id}})}" class="btn btn-success">Update</a>
+                </td>
             </tr>
         </tbody>
     </table>
