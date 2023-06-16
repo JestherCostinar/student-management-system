@@ -87,4 +87,14 @@ public class StudentController {
 
         return "redirect:/students";
     }
+
+    // Handler method to handle student request
+    @GetMapping("/{studentId}/view")
+    public String viewStudent(@PathVariable Long studentId,
+                              Model model) {
+        StudentDto student = studentService.getStudentById(studentId);
+        model.addAttribute("student", student);
+
+        return "view_student";
+    }
 }
